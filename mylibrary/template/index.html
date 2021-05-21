@@ -1,0 +1,68 @@
+{%load static%}
+{% static "images" as baseUrl%}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Home</title>
+  <meta charset="utf-8">
+  <meta name="format-detection" content="telephone=no" />
+  <link rel="icon" href="static/images/favicon.ico" type="image/x-icon">
+  <link rel="stylesheet" href="{%static 'css/grid.css'%}">
+  <link rel="stylesheet" href="{%static 'css/style.css'%}">
+  <link rel="stylesheet" href="{%static 'css/camera.css'%}">
+  <link rel="stylesheet" href="{%static 'css/jquery.fancybox.css'%}">
+
+  <link href="{%static 'css/layout.css'%}" rel="stylesheet" type="text/css" media="all">
+  <script src="{%static 'js/jquery.js'%}"></script>
+  <script src="{%static 'js/jquery-migrate-1.2.1.js'%}"></script>
+  
+</head>
+
+<body >
+  <div class="page">
+    <header>
+      <main>
+        <section class="well">
+          <div class="container">
+            <h2><em>Welcome</em> to the Library</h2>
+          </div>
+        </section>
+      </main>
+
+      <div class="wrapper row2">
+        <section class="hoc container clear">
+          <ul class="nospace group team">
+            <li class="one_quarter">
+              <figure><a class="imgover" href="{% url 'admin:login' %}"><img src="static/images/Admin.jpg" alt=""></a>
+                <figcaption><strong class="heading">Admin Login</strong> </figcaption>
+              </figure>
+            </li>
+            <li class="one_quarter">
+              <figure><a class="imgover" href="studentlogin"><img src="static/images/Student.jpg" alt=""></a>
+                <figcaption><strong class="heading">Student Login</strong> </figcaption>
+              </figure>
+            </li>
+            <li class="one_quarter">
+              <figure><a class="imgover" href="studentregister"><img src="static/images/Student.jpg" alt=""></a>
+                <figcaption><strong class="heading">Student Register</strong> </figcaption>
+              </figure>
+            </li>
+          </ul>         
+        </section>
+      </div>
+
+    </header>
+
+    <footer>
+      <div class="container">
+        <ul class="socials">
+        </ul>
+        <div class="copyright">© <span id="copyright-year"></span> |
+          <a href="#">Privacy Policy</a>
+        </div>
+      </div>
+      <div class="tm"><a href="#"><img src="static/images/TM_logo.png" alt=""></a></div>
+    </footer>
+  </div>
+</body>

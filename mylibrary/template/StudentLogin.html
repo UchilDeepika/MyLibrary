@@ -1,0 +1,42 @@
+{%load static%}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<title>Home</title>
+	<meta charset="utf-8">
+	<meta name="format-detection" content="telephone=no" />
+	<link rel="icon" href="static/images/favicon.ico" type="image/x-icon">
+	<link rel="stylesheet" href="{%static 'css/login.css'%}">
+
+
+</head>
+
+<body>
+
+	<form action="{% url 'studentlogin' %}" method="post">
+		{%csrf_token%}
+
+		<div class="body"></div>
+		<div class="grad"></div>
+		<div class="header">
+			<div>Student Login</div>
+		</div>
+		<br>
+		<div class="login">
+			<input type="text" placeholder="username" name="username"><br>
+			<input type="password" placeholder="password" name="password"><br>
+			<input type="submit" value="Login">
+		</div>
+		</header>
+		<div>
+			{% for message in messages %}
+			<h3>
+				{{message}}
+			</h3>
+			{% endfor %}
+		</div>
+
+		</div>
+	</form>
+</body>
