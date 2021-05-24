@@ -1,0 +1,88 @@
+{%load static%}
+{% static "images" as baseUrl%}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Home</title>
+    <meta charset="utf-8">
+    <meta name="format-detection" content="telephone=no" />
+    <link rel="icon" href="static/images/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="{%static 'css/grid.css'%}">
+    <link rel="stylesheet" href="{%static 'css/style.css'%}">
+    <link rel="stylesheet" href="{%static 'css/camera.css'%}">
+    <link rel="stylesheet" href="{%static 'css/jquery.fancybox.css'%}">
+
+    <link href="{%static 'css/layout.css'%}" rel="stylesheet" type="text/css" media="all">
+    <script src="{%static 'js/jquery.js'%}"></script>
+    <script src="{%static 'js/jquery-migrate-1.2.1.js'%}"></script>
+
+</head>
+
+<body>
+    <div class="page">
+        <header>
+            <main>
+                <section class="well">
+                    <div class="container">
+                        <h2><em>Welcome to the Library </em></h2>
+                    </div>
+                </section>
+            </main>
+            <div class="wrapper row2">
+                <section class="hoc container clear">
+                    <form method="POST" action="{% url 'BookDetails' %}" id="form1">
+                        {%csrf_token%}
+                        <ul class="nospace group team">
+                            <h2> Available Books </h2>
+                            {%for book in books%}
+                            <li class="one_quarter">
+                                <figure><img src="{{book.img.url}}" alt="">
+                                    <a>
+                                        Book Name : {{book.name}}
+                                    </a>
+                                    <a>
+                                        Author Name : {{book.author.name}}
+                                    </a>
+                                    <input type="submit" value="Check out this book" form="form1">
+                                    <input type="hidden" name="book_name" value="{{book.name}}" />
+                                </figure>
+                            </li>
+                            {%endfor%}
+                        </ul>
+                    </form>
+                </section>
+            </div>
+
+            <div class="wrapper row2">
+                <section class="hoc container clear">
+                    {%csrf_token%}
+                    <ul class="nospace group team">
+                        <h2>Books Checked out by {{user.username}} </h2>
+                        {%for bookscheckedout in bookscheckedout%}
+                        <li class="one_quarter">
+                            <figure><img src="{{bookscheckedout.bookid.img.url}}" alt="">
+                                <a>
+                                    Book Name :{{bookscheckedout.bookid.name}}
+                                </a>
+
+                            </figure>
+                        </li>
+                        {%endfor%}
+                    </ul>
+                </section>
+            </div>
+        </header>
+
+        <footer>
+            <div class="container">
+                <ul class="socials">
+                </ul>
+                <div class="copyright">© <span id="copyright-year"></span> |
+                    <a href="#">Privacy Policy</a>
+                </div>
+            </div>
+            <div class="tm"><a href="#"><img src="static/images/TM_logo.png" alt=""></a></div>
+        </footer>
+    </div>
+</body>

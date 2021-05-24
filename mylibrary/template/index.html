@@ -1,68 +1,116 @@
 {%load static%}
 {% static "images" as baseUrl%}
 <!DOCTYPE html>
-<html lang="en">
+<html>
 
 <head>
-  <title>Home</title>
-  <meta charset="utf-8">
-  <meta name="format-detection" content="telephone=no" />
-  <link rel="icon" href="static/images/favicon.ico" type="image/x-icon">
-  <link rel="stylesheet" href="{%static 'css/grid.css'%}">
-  <link rel="stylesheet" href="{%static 'css/style.css'%}">
-  <link rel="stylesheet" href="{%static 'css/camera.css'%}">
-  <link rel="stylesheet" href="{%static 'css/jquery.fancybox.css'%}">
-
-  <link href="{%static 'css/layout.css'%}" rel="stylesheet" type="text/css" media="all">
-  <script src="{%static 'js/jquery.js'%}"></script>
-  <script src="{%static 'js/jquery-migrate-1.2.1.js'%}"></script>
-  
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>Online Library System</title>
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:400" rel="stylesheet" />
+  <link href="{%static 'css/templatemo-style.css'%}" rel="stylesheet" />
 </head>
+<!--
 
-<body >
-  <div class="page">
-    <header>
-      <main>
-        <section class="well">
-          <div class="container">
-            <h2><em>Welcome</em> to the Library</h2>
+Simple House
+
+https://templatemo.com/tm-539-simple-house
+
+-->
+
+<body>
+
+  <div class="container">
+    <!-- Top box -->
+    <!-- Logo & Site Name -->
+    <div class="placeholder">
+      <div class="parallax-window" data-parallax="scroll" data-image-src="static/img/Lib.jpg">
+        <div class="tm-header">
+          <div class="row tm-header-inner">
+            <div class="col-md-6 col-12">
+
+            </div>
+            <nav class="col-md-6 col-12 tm-nav">
+              <ul class="tm-nav-ul">
+                <li class="tm-nav-li"><a href="{% url 'admin:login' %}" class="tm-nav-link active">Admin</a></li>
+                <li class="tm-nav-li"><a href="studentlogin" class="tm-nav-link">Login</a></li>
+                <li class="tm-nav-li"><a href="studentregister" class="tm-nav-link">Register</a></li>
+              </ul>
+            </nav>
           </div>
-        </section>
-      </main>
-
-      <div class="wrapper row2">
-        <section class="hoc container clear">
-          <ul class="nospace group team">
-            <li class="one_quarter">
-              <figure><a class="imgover" href="{% url 'admin:login' %}"><img src="static/images/Admin.jpg" alt=""></a>
-                <figcaption><strong class="heading">Admin Login</strong> </figcaption>
-              </figure>
-            </li>
-            <li class="one_quarter">
-              <figure><a class="imgover" href="studentlogin"><img src="static/images/Student.jpg" alt=""></a>
-                <figcaption><strong class="heading">Student Login</strong> </figcaption>
-              </figure>
-            </li>
-            <li class="one_quarter">
-              <figure><a class="imgover" href="studentregister"><img src="static/images/Student.jpg" alt=""></a>
-                <figcaption><strong class="heading">Student Register</strong> </figcaption>
-              </figure>
-            </li>
-          </ul>         
-        </section>
-      </div>
-
-    </header>
-
-    <footer>
-      <div class="container">
-        <ul class="socials">
-        </ul>
-        <div class="copyright">© <span id="copyright-year"></span> |
-          <a href="#">Privacy Policy</a>
         </div>
       </div>
-      <div class="tm"><a href="#"><img src="static/images/TM_logo.png" alt=""></a></div>
+    </div>
+
+    <main>
+      <header class="row tm-welcome-section">
+        <h2 class="col-12 text-center tm-section-title">Welcome to the Library</h2>
+        <p class="col-12 text-center">Find the latest and the oldest book all at one place.</p>
+      </header>
+
+      <h2 class="col-12 text-center tm-section-title">Latest Available Books </h2>
+      <!-- Gallery -->
+      <div class="row tm-gallery">
+        <div id="tm-gallery-page-pizza" class="tm-gallery-page">
+          {%for book in books%}
+          <article class="col-lg-3 col-md-4 col-sm-6 col-12 tm-gallery-item">
+            <figure>
+              <img src="{{book.img.url}}" alt="Image" class="img-fluid tm-gallery-img" />
+              <figcaption>
+                <h4 class="tm-gallery-title">{{book.name}}</h4>     </br>
+                              by          
+                <p class="tm-gallery-price">{{book.author.fisrtname}} {{book.author.lastname}}</p>
+              </figcaption>
+            </figure>           
+          </article>
+          {%endfor%}
+        </div>
+      </div>
+
+<!--       <div class="tm-section tm-container-inner">
+        <div class="row">
+          <div class="col-md-6">
+            <figure class="tm-description-figure">
+              <img src="img/img-01.jpg" alt="Image" class="img-fluid" />
+            </figure>
+          </div>
+          <div class="col-md-6">
+            <div class="tm-description-box">
+              <h4 class="tm-gallery-title">Maecenas nulla neque</h4>
+              <p class="tm-mb-45">Redistributing this template as a downloadable ZIP file on any template collection
+                site is strictly prohibited. You will need to <a rel="nofollow"
+                  href="https://templatemo.com/contact">talk to us</a> for additional permissions about our templates.
+                Thank you.</p>
+              <a href="about.html" class="tm-btn tm-btn-default tm-right">Read More</a>
+            </div>
+          </div>
+        </div>
+      </div> -->
+    </main>
+
+    <footer class="tm-footer text-center">
+      <p>Copyright &copy; 2020 Simple House
+
+        | Design: <a rel="nofollow" href="https://templatemo.com">TemplateMo</a></p>
     </footer>
   </div>
+  <script src="static/js/jquery.min.js"></script>
+  <script src="static/js/parallax.min.js"></script>
+  <script>
+    $(document).ready(function () {
+      // Handle click on paging links
+      $('.tm-paging-link').click(function (e) {
+        e.preventDefault();
+
+        var page = $(this).text().toLowerCase();
+        $('.tm-gallery-page').addClass('hidden');
+        $('#tm-gallery-page-' + page).removeClass('hidden');
+        $('.tm-paging-link').removeClass('active');
+        $(this).addClass("active");
+      });
+    });
+  </script>
 </body>
+
+</html>

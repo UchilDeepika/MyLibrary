@@ -1,42 +1,107 @@
 {%load static%}
+{% static "images" as baseUrl%}
 <!DOCTYPE html>
-<html lang="en">
+<html>
 
 <head>
-	<title>Home</title>
-	<meta charset="utf-8">
-	<meta name="format-detection" content="telephone=no" />
-	<link rel="icon" href="static/images/favicon.ico" type="image/x-icon">
-	<link rel="stylesheet" href="{%static 'css/login.css'%}">
-
-
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+	<title>Online Library System</title>
+	<link href="https://fonts.googleapis.com/css?family=Open+Sans:400" rel="stylesheet" />
+	<link href="{%static 'css/templatemo-style.css'%}" rel="stylesheet" />
 </head>
+<!--
+
+Simple House
+
+https://templatemo.com/tm-539-simple-house
+
+-->
 
 <body>
 
-	<form action="{% url 'studentlogin' %}" method="post">
-		{%csrf_token%}
+	<div class="container">
+		<!-- Top box -->
+		<!-- Logo & Site Name -->
+		<div class="placeholder">
+			<div class="parallax-window" data-parallax="scroll" data-image-src="static/img/Lib.jpg">
+				<div class="tm-header">
+					<div class="row tm-header-inner">
+						<div class="col-md-6 col-12">
 
-		<div class="body"></div>
-		<div class="grad"></div>
-		<div class="header">
-			<div>Student Login</div>
-		</div>
-		<br>
-		<div class="login">
-			<input type="text" placeholder="username" name="username"><br>
-			<input type="password" placeholder="password" name="password"><br>
-			<input type="submit" value="Login">
-		</div>
-		</header>
-		<div>
-			{% for message in messages %}
-			<h3>
-				{{message}}
-			</h3>
-			{% endfor %}
+						</div>
+						<nav class="col-md-6 col-12 tm-nav">
+							<ul class="tm-nav-ul">
+								<li class="tm-nav-li"><a href="{% url 'admin:login' %}"
+										class="tm-nav-link active">Admin</a></li>
+								<li class="tm-nav-li"><a href="studentregister" class="tm-nav-link">Register</a></li>
+							</ul>
+						</nav>
+					</div>
+				</div>
+			</div>
 		</div>
 
-		</div>
-	</form>
+		<main>
+			<header class="row tm-welcome-section">
+				<h2 class="col-12 text-center tm-section-title">Welcome to the Library</h2>
+				<p class="col-12 text-center">Find the latest and the oldest book all at one place.</p>
+			</header>
+
+
+			<div class="tm-container-inner-2 tm-contact-section">
+				<div class="row">
+					<div class="col-md-8">
+						<h2 class="col-12 text-center tm-section-title">Login</h2>
+						<form action="{% url 'studentlogin' %}" method="post">
+							{%csrf_token%}
+							<div class="form-group">
+								<input type="text" placeholder="username" name="username">
+							</div>
+							<div class="form-group">
+								<input type="password" placeholder="password" name="password">
+							</div>
+							<div class="form-group tm-d-flex">
+								<button type="submit" class="tm-btn tm-btn-success tm-btn-right">
+									Login
+								</button>
+							</div>
+					</div>
+					</form>
+					<div>
+						{% for message in messages %}
+						<h3>
+							{{message}}
+						</h3>
+						{% endfor %}
+					</div>
+				</div>
+			</div>
+		</main>
+
+		<footer class="tm-footer text-center">
+			<p>Copyright &copy; 2020 Simple House
+
+				| Design: <a rel="nofollow" href="https://templatemo.com">TemplateMo</a></p>
+		</footer>
+	</div>
+	<script src="static/js/jquery.min.js"></script>
+	<script src="static/js/parallax.min.js"></script>
+	<script>
+		$(document).ready(function () {
+			// Handle click on paging links
+			$('.tm-paging-link').click(function (e) {
+				e.preventDefault();
+
+				var page = $(this).text().toLowerCase();
+				$('.tm-gallery-page').addClass('hidden');
+				$('#tm-gallery-page-' + page).removeClass('hidden');
+				$('.tm-paging-link').removeClass('active');
+				$(this).addClass("active");
+			});
+		});
+	</script>
 </body>
+
+</html>
