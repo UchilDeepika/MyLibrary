@@ -33,7 +33,7 @@ https://templatemo.com/tm-539-simple-house
 						</div>
 						<nav class="col-md-6 col-12 tm-nav">
 							<ul class="tm-nav-ul">
-								<li class="tm-nav-li"><a href="{% url 'admin:login' %}"
+								<li class="tm-nav-li"><a href="{% url  'admin:login' %}"
 										class="tm-nav-link active">Admin</a></li>
 								<li class="tm-nav-li"><a href="studentregister" class="tm-nav-link">Register</a></li>
 							</ul>
@@ -54,7 +54,7 @@ https://templatemo.com/tm-539-simple-house
 				<div class="row">
 					<div class="col-md-8">
 						<h2 class="col-12 text-center tm-section-title">Login</h2>
-						<form action="{% url 'studentlogin' %}" method="post">
+						<form action="{% url 'studentlogin' %}" method="post" id="form1">
 							{%csrf_token%}
 							<div class="form-group">
 								<input type="text" placeholder="username" name="username">
@@ -63,7 +63,7 @@ https://templatemo.com/tm-539-simple-house
 								<input type="password" placeholder="password" name="password">
 							</div>
 							<div class="form-group tm-d-flex">
-								<button type="submit" class="tm-btn tm-btn-success tm-btn-right">
+								<button type="submit" class="tm-btn tm-btn-success tm-btn-right" form="form1">
 									Login
 								</button>
 							</div>

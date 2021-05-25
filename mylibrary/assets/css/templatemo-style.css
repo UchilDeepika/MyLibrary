@@ -57,7 +57,7 @@ html {
 .col-12 {
   position: relative;
   width: 100%;
-  padding-right: 15px;
+  padding-right: 25px;
   padding-left: 15px;
 }
 
@@ -395,20 +395,20 @@ p, address {
 }
 
 .tm-gallery-title {
-  font-size: 1.3rem;
+  font-size: 1.0rem;
   font-weight: 400;
   color: #1A6692;
-  margin-bottom: 15px;
+  margin-bottom: 10px;
 }
 
 .tm-gallery-description {
-  margin-bottom: 20px;
+  margin-bottom: 10px;
 }
 
 .tm-gallery-price {
-  font-size: 1.25rem;
+  font-size: 1.0rem;
   color: #2F956D;
-  margin-bottom: 60px;
+  margin-bottom: 10px;
 }
 
 .tm-paging-links {

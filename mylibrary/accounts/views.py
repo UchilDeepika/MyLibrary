@@ -32,16 +32,22 @@ def studentregister(request):
 
         if password1==password2:
             if User.objects.filter(username=username).exists():
-                messages.info("Username already exists")
+                messages.info(request,"Username already exists")
+                return redirect('studentregister')
             elif User.objects.filter(email=email).exists():
-                messages.info("Email already exists")
+                messages.info(request,"Email already exists")
+                return redirect('studentregister')
             else:
                 user=User.objects.create_user(username=username,password=password1,email=email,first_name=first_name,last_name=last_name)
                 user.save()                
                 return redirect('studentlogin')
         else:
-            messages.info("Passwords not matching")
+            messages.info(request,"Passwords not matching")
             return redirect('studentregister')
-        return redirect( '/')
+        return redirect('/')
     else:
         return render(request,'StudentRegister.html')
+
+def studentlogout(request):
+          auth.logout(request)
+          return redirect('/')  

@@ -35,18 +35,19 @@
                     <form method="POST" action="{% url 'CheckOut' %}" id="form1">
                         {%csrf_token%}
                         <ul class="nospace group team">
-                            <h2> Book Details </h2>
+                            <h2> Book Details  </h2>           
                             {%for book in book%}
                             <li class="one_quarter">
                                 <figure><img src="{{book.img.url}}" alt="">
-                                    Book Name : {{book.name}}
+                                       
+                                        Book Name : {{book.name}}  
+                                </br>
+                                        Author Name : {{book.Author}}                                           
                                     </br>
-                                    Author Name : {{book.Author}}
-                                    </br>
-                                    Book Description : {{book.desc}}
-                                    </br>
-                                    <input type="submit" value="Check out this book for me" form="form1">
-                                    <input type="hidden" name="book_name" value="{{book.name}}" />
+                                        Book Description : {{book.desc}}                                        
+                                        </br>
+                                        <input type="submit" value="Check out this book for me" form="form1">
+                                        <input type="hidden" name="book_name" value="{{book.name}}" />
                                 </figure>
                             </li>
                             {%endfor%}
@@ -61,7 +62,7 @@
                     <ul class="nospace group team">
                         <h2>Books Checked out by {{user.username}} </h2>
                         {%for bookscheckedout in bookscheckedout%}
-
+                        
                         <li class="one_quarter">
                             <figure><img src="{{bookscheckedout.img.url}}" alt="">
                                 <figcaption">

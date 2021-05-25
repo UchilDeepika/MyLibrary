@@ -5,7 +5,7 @@ from .models import Author, Book, BooksCheckedOut
 
 # Create your views here.
 def StudentHomePage(request):   
-    books=Book.objects.all().filter(available=True)  
+    books=Book.objects.all().filter(available=True)[:3]  
     bookscheckedout=BooksCheckedOut.objects.filter(username=request.user.username).select_related("bookid")     
     return render(request,'StudentsHomePage.html', {'books':books,'bookscheckedout':bookscheckedout})
 
