@@ -1,93 +1,109 @@
 {%load static%}
 {% static "images" as baseUrl%}
 <!DOCTYPE html>
-<html lang="en">
+<html>
 
 <head>
-    <title>Home</title>
-    <meta charset="utf-8">
-    <meta name="format-detection" content="telephone=no" />
-    <link rel="icon" href="static/images/favicon.ico" type="image/x-icon">
-    <link rel="stylesheet" href="{%static 'css/grid.css'%}">
-    <link rel="stylesheet" href="{%static 'css/style.css'%}">
-    <link rel="stylesheet" href="{%static 'css/camera.css'%}">
-    <link rel="stylesheet" href="{%static 'css/jquery.fancybox.css'%}">
-
-    <link href="{%static 'css/layout.css'%}" rel="stylesheet" type="text/css" media="all">
-    <script src="{%static 'js/jquery.js'%}"></script>
-    <script src="{%static 'js/jquery-migrate-1.2.1.js'%}"></script>
-
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Online Library System</title>
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400" rel="stylesheet" />
+    <link href="{%static 'css/templatemo-style.css'%}" rel="stylesheet" />
 </head>
+<!--
+
+Simple House
+
+https://templatemo.com/tm-539-simple-house
+
+-->
 
 <body>
-    {%csrf_token%}
-    <div class="page">
-        <header>
-            <main>
-                <section class="well">
-                    <div class="container">
-                        <h2><em>Welcome to the Library </em></h2>
+
+    <div class="container">
+        <!-- Top box -->
+        <!-- Logo & Site Name -->
+        <div class="placeholder">
+            <div class="parallax-window" data-parallax="scroll" data-image-src="static/img/Lib.jpg">
+                <div class="tm-header">
+                    <div class="row tm-header-inner">
+                        <div class="col-md-6 col-12">
+
+                        </div>
+                        <nav class="col-md-6 col-12 tm-nav">
+                            <ul class="tm-nav-ul">
+                                <li class="tm-nav-li"><a href="studentlogout" class="tm-nav-link">LogOut</a></li>
+                            </ul>
+                        </nav>
                     </div>
-                </section>
-            </main>
-            <div class="wrapper row2">
-                <section class="hoc container clear">
-                    <form method="POST" action="{% url 'CheckOut' %}" id="form1">
-                        {%csrf_token%}
-                        <ul class="nospace group team">
-                            <h2> Book Details  </h2>           
-                            {%for book in book%}
-                            <li class="one_quarter">
-                                <figure><img src="{{book.img.url}}" alt="">
-                                       
-                                        Book Name : {{book.name}}  
-                                </br>
-                                        Author Name : {{book.Author}}                                           
-                                    </br>
-                                        Book Description : {{book.desc}}                                        
-                                        </br>
-                                        <input type="submit" value="Check out this book for me" form="form1">
-                                        <input type="hidden" name="book_name" value="{{book.name}}" />
-                                </figure>
-                            </li>
-                            {%endfor%}
-                        </ul>
-                    </form>
-                </section>
-            </div>
-
-            <div class="wrapper row2">
-                <section class="hoc container clear">
-                    {%csrf_token%}
-                    <ul class="nospace group team">
-                        <h2>Books Checked out by {{user.username}} </h2>
-                        {%for bookscheckedout in bookscheckedout%}
-                        
-                        <li class="one_quarter">
-                            <figure><img src="{{bookscheckedout.img.url}}" alt="">
-                                <figcaption">
-                                    Book Name : {{bookscheckedout.bookid.name}}
-                                    </figcaption>
-                                    <figcaption></figcaption>
-                                    Author Name : {{bookscheckedout.author}}
-                                    </figcaption>
-                            </figure>
-                        </li>
-                        {%endfor%}
-                    </ul>
-                </section>
-            </div>
-        </header>
-
-        <footer>
-            <div class="container">
-                <ul class="socials">
-                </ul>
-                <div class="copyright">© <span id="copyright-year"></span> |
-                    <a href="#">Privacy Policy</a>
                 </div>
             </div>
-            <div class="tm"><a href="#"><img src="static/images/TM_logo.png" alt=""></a></div>
+        </div>
+
+        <main>
+            <header class="row tm-welcome-section">
+                <h2 class="col-12 text-center tm-section-title">Welcome to the Library</h2>
+                <p class="col-12 text-center">Find the latest and the oldest book all at one place.</p>
+            </header>
+
+            <h2 class="col-12 text-center tm-section-title"> Available Books </h2>
+            <!-- Gallery -->
+            {%for book in book%}
+            <div class="row tm-gallery">
+
+                <div id="tm-gallery-page-pizza" class="tm-gallery-page">
+
+                    <form method="POST" action="{% url 'CheckOut' %}" id="form1">
+                        {%csrf_token%}
+                        <article class="col-lg-3 col-md-4 col-sm-6 col-12 tm-gallery-item">
+                            <figure>
+                                <img src="{{book.img.url}}" alt="Image" class="img-fluid tm-gallery-img" />
+                                <figcaption>
+                                    <h2 class="tm-gallery-title">{{book.name}}</h2>
+                                </figcaption>
+                                <figcaption>
+                                    <p class="tm-gallery-price">{{book.author.fisrtname}} {{book.author.lastname}}</p>
+                                    <p class="tm-gallery-price">{{bookscheckedout.bookid.desc}} </p>
+                                </figcaption>
+                                <figcaption>
+                                    <button type="submit" class="tm-btn tm-btn-success tm-btn-right" form="form1">
+                                        Check Out
+                                    </button>
+                                    <input type="hidden" name="book_name" value="{{book.name}}" />
+                                </figcaption>
+                            </figure>
+                        </article>
+                    </form>
+                </div>
+
+            </div>
+          {%endfor%}
+
+        </main>
+
+        <footer class="tm-footer text-center">
+            <p>Copyright &copy; 2020 Simple House
+
+                | Design: <a rel="nofollow" href="https://templatemo.com">TemplateMo</a></p>
         </footer>
     </div>
+    <script src="static/js/jquery.min.js"></script>
+    <script src="static/js/parallax.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            // Handle click on paging links
+            $('.tm-paging-link').click(function (e) {
+                e.preventDefault();
+
+                var page = $(this).text().toLowerCase();
+                $('.tm-gallery-page').addClass('hidden');
+                $('#tm-gallery-page-' + page).removeClass('hidden');
+                $('.tm-paging-link').removeClass('active');
+                $(this).addClass("active");
+            });
+        });
+    </script>
 </body>
+
+</html>

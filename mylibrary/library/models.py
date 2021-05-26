@@ -27,3 +27,4 @@ class BooksCheckedOut(models.Model):
     bookid = models.ForeignKey(Book, on_delete=models.CASCADE)   
     username=models.CharField(max_length=100)
     checkedoutdate=models.DateField(default=timezone.now)
+    returned = models.BooleanField(default=False)

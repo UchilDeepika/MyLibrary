@@ -9,4 +9,5 @@ urlpatterns=[
     path('BookDetails',views.BookDetails,name='BookDetails'),   
     path('CheckOut',views.CheckOut,name='CheckOut'),  
     path('',views.index,name='index'),  
+    path('returnbook',views.returnbook,name='returnbook')
 ]

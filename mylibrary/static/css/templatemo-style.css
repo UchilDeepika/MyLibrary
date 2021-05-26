@@ -188,8 +188,8 @@ html {
 }
 
 .img-fluid {
-  max-width: 100%;
-  height: auto;
+  width: 75%;
+  height: 75%;
 }
 
 body {
