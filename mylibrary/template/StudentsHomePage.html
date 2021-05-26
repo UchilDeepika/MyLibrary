@@ -59,15 +59,15 @@ https://templatemo.com/tm-539-simple-house
                 <img src="{{book.img.url}}" alt="Image" class="img-fluid tm-gallery-img" />
                 <figcaption>
                   <h2 class="tm-gallery-title">{{book.name}}</h2>
+                  <input type="hidden" name="book_name" value="{{book.name}}" />
                 </figcaption>
                 <figcaption>
                   <p class="tm-gallery-price">{{book.author.fisrtname}} {{book.author.lastname}}</p>
-                </figcaption>                
+                </figcaption>
                 <figcaption>
                   <button type="submit" class="tm-btn tm-btn-success tm-btn-right" form="form1">
                     Check Out This Book
                   </button>
-                  <input type="hidden" name="book_name" value="{{book.name}}" />
                 </figcaption>
               </figure>
             </article>
@@ -90,7 +90,7 @@ https://templatemo.com/tm-539-simple-house
                   <h4 class="tm-gallery-title">{{bookscheckedout.bookid.name}}</h4> </br>
                   by
                   <p class="tm-gallery-price">{{bookscheckedout.bookid.author.fisrtname}}
-                    {{bookscheckedout.bookid.author.lastname}}</p>            
+                    {{bookscheckedout.bookid.author.lastname}}</p>
                 </figcaption>
                 <div class="form-group tm-d-flex">
                   <button type="submit" class="tm-btn tm-btn-success tm-btn-right" form="form2">

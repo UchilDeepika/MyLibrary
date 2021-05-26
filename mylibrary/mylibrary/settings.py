@@ -55,7 +55,7 @@ ROOT_URLCONF = 'mylibrary.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR,'template')],
+        'DIRS': [os.path.join(BASE_DIR, 'template')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -78,9 +78,9 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'Library',
-        'USER':'postgres',
-        'PASSWORD':'1234',
-        'HOST':'localhost'
+        'USER': 'postgres',
+        'PASSWORD': '1234',
+        'HOST': 'localhost'
     }
 }
 
@@ -123,12 +123,12 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-STATICFILES_DIRS=[
-    os.path.join(BASE_DIR,'static')
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'static')
 ]
 
-STATIC_ROOT=os.path.join(BASE_DIR,'assets')
+STATIC_ROOT = os.path.join(BASE_DIR, 'assets')
 
-MEDIA_ROOT=os.path.join( BASE_DIR,'media')
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
-MEDIA_URL='/media/'
+MEDIA_URL = '/media/'
