@@ -59,13 +59,12 @@ https://templatemo.com/tm-539-simple-house
                 <img src="{{book.img.url}}" alt="Image" class="img-fluid tm-gallery-img" />
                 <figcaption>
                   <h2 class="tm-gallery-title">{{book.name}}</h2>
-                  <input type="hidden" name="book_name" value="{{book.name}}" />
                 </figcaption>
                 <figcaption>
                   <p class="tm-gallery-price">{{book.author.fisrtname}} {{book.author.lastname}}</p>
                 </figcaption>
                 <figcaption>
-                  <button type="submit" class="tm-btn tm-btn-success tm-btn-right" form="form1">
+                  <button type="submit" value ="{{book.name}}" name="bookname" class="tm-btn tm-btn-success tm-btn-right" form="form1">
                     Check Out This Book
                   </button>
                 </figcaption>

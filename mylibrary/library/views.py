@@ -15,7 +15,7 @@ def StudentHomePage(request):
 
 def BookDetails(request):
     if request.method == "POST":
-        bookname = request.POST['book_name']
+        bookname = request.POST['bookname']
         book = Book.objects.all().filter(name=bookname)
         return render(request, 'BookDetails.html', {'book': book})
 
