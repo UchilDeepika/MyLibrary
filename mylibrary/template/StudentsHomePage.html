@@ -4,12 +4,12 @@
 <html>
 
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-  <title>Online Library System</title>
-  <link href="https://fonts.googleapis.com/css?family=Open+Sans:400" rel="stylesheet" />
-  <link href="{%static 'css/templatemo-style.css'%}" rel="stylesheet" />
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
+    <title>Online Library System</title>
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400" rel="stylesheet"/>
+    <link href="{%static 'css/templatemo-style.css'%}" rel="stylesheet"/>
 </head>
 <!--
 
@@ -21,102 +21,105 @@ https://templatemo.com/tm-539-simple-house
 
 <body>
 
-  <div class="container">
+<div class="container">
     <!-- Top box -->
     <!-- Logo & Site Name -->
     <div class="placeholder">
-      <div class="parallax-window" data-parallax="scroll" data-image-src="static/img/Lib.jpg">
-        <div class="tm-header">
-          <div class="row tm-header-inner">
-            <div class="col-md-6 col-12">
+        <div class="parallax-window" data-parallax="scroll" data-image-src="static/img/Lib.jpg">
+            <div class="tm-header">
+                <div class="row tm-header-inner">
+                    <div class="col-md-6 col-12">
 
+                    </div>
+                    <nav class="col-md-6 col-12 tm-nav">
+                        <ul class="tm-nav-ul">
+                            <li class="tm-nav-li"><a href="studentlogout" class="tm-nav-link">LogOut</a></li>
+                        </ul>
+                    </nav>
+                </div>
             </div>
-            <nav class="col-md-6 col-12 tm-nav">
-              <ul class="tm-nav-ul">
-                <li class="tm-nav-li"><a href="studentlogout" class="tm-nav-link">LogOut</a></li>
-              </ul>
-            </nav>
-          </div>
         </div>
-      </div>
     </div>
 
     <main>
-      <header class="row tm-welcome-section">
-        <h2 class="col-12 text-center tm-section-title">Welcome to the Library</h2>
-        <p class="col-12 text-center">Find the latest and the oldest book all at one place.</p>
-      </header>
+        <header class="row tm-welcome-section">
+            <h2 class="col-12 text-center tm-section-title">Welcome to the Library</h2>
+            <p class="col-12 text-center">Find the latest and the oldest book all at one place.</p>
+        </header>
 
-      <h2 class="col-12 text-center tm-section-title"> Available Books </h2>
-      <!-- Gallery -->
-      <div class="row tm-gallery">
-        {%for book in books%}
-        <div id="tm-gallery-page-pizza" class="tm-gallery-page">
-          <form method="POST" action="{% url 'BookDetails' %}" id="form1">
-            {%csrf_token%}
-            <article class="col-lg-3 col-md-4 col-sm-6 col-12 tm-gallery-item">
-              <figure>
-                <img src="{{book.img.url}}" alt="Image" class="img-fluid tm-gallery-img" />
-                <figcaption>
-                  <h2 class="tm-gallery-title">{{book.name}}</h2>
-                </figcaption>
-                <figcaption>
-                  <p class="tm-gallery-price">{{book.author.fisrtname}} {{book.author.lastname}}</p>
-                </figcaption>
-                <figcaption>
-                  <button type="submit" value ="{{book.name}}" name="bookname" class="tm-btn tm-btn-success tm-btn-right" form="form1">
-                    Check Out This Book
-                  </button>
-                </figcaption>
-              </figure>
-            </article>
-          </form>
+        <h2 class="col-12 text-center tm-section-title"> Available Books </h2>
+        <!-- Gallery -->
+        <div class="row tm-gallery">
+            {%for book in books%}
+            <div id="tm-gallery-page-pizza" class="tm-gallery-page">
+                <form method="POST" action="{% url 'BookDetails' %}" id="form1">
+                    {%csrf_token%}
+                    <article class="col-lg-3 col-md-4 col-sm-6 col-12 tm-gallery-item">
+                        <figure>
+                            <img src="{{book.img.url}}" alt="Image" class="img-fluid tm-gallery-img"/>
+                            <figcaption>
+                                <h2 class="tm-gallery-title">{{book.name}}</h2>
+                            </figcaption>
+                            <figcaption>
+                                <p class="tm-gallery-price">{{book.author.fisrtname}} {{book.author.lastname}}</p>
+                            </figcaption>
+                            <figcaption>
+                                <button type="submit" value="{{book.name}}" name="bookname"
+                                        class="tm-btn tm-btn-success tm-btn-right" form="form1">
+                                    Check Out This Book
+                                </button>
+                            </figcaption>
+                        </figure>
+                </form>
+                </article>
+                </form>
+            </div>
+            {%endfor%}
         </div>
-        {%endfor%}
-      </div>
+        <a href="BrowseBooks" ><p align="right" style="font-size:160%;"> More Books </p></a>
 
-      <h2 class="col-12 text-center tm-section-title"> Books Checked out by {{user.username}} </h2>
+        <h2 class="col-12 text-center tm-section-title"> Books Checked out by '{{user.username}}' </h2>
 
-      <div class="row tm-gallery">
-        {%for bookscheckedout in bookscheckedout%}
-        <div id="tm-gallery-page-pizza" class="tm-gallery-page">
-          <form method="POST" action="{% url 'returnbook' %}" id="form2">
-            {%csrf_token%}
-            <article class="col-lg-3 col-md-4 col-sm-6 col-12 tm-gallery-item">
-              <figure>
-                <img src="{{bookscheckedout.bookid.img.url}}" alt="Image" class="img-fluid tm-gallery-img" />
-                <figcaption>
-                  <h4 class="tm-gallery-title">{{bookscheckedout.bookid.name}}</h4> </br>
-                  by
-                  <p class="tm-gallery-price">{{bookscheckedout.bookid.author.fisrtname}}
-                    {{bookscheckedout.bookid.author.lastname}}</p>
-                </figcaption>
-                <div class="form-group tm-d-flex">
-                  <button type="submit" class="tm-btn tm-btn-success tm-btn-right" form="form2">
-                    Return This Book
-                  </button>
-                  <input type="hidden" name="book_name" value="{{bookscheckedout.bookid.name}}" />
-                </div>
-              </figure>
+        <div class="row tm-gallery">
+            {%for bookscheckedout in bookscheckedout%}
+            <div id="tm-gallery-page-pizza" class="tm-gallery-page">
+                <form method="POST" action="{% url 'returnbook' %}" id="form2">
+                    {%csrf_token%}
+                    <article class="col-lg-3 col-md-4 col-sm-6 col-12 tm-gallery-item">
+                        <figure>
+                            <img src="{{bookscheckedout.bookid.img.url}}" alt="Image" class="img-fluid tm-gallery-img"/>
+                            <figcaption>
+                                <h4 class="tm-gallery-title">{{bookscheckedout.bookid.name}}</h4> </br>
+                                by
+                                <p class="tm-gallery-price">{{bookscheckedout.bookid.author.fisrtname}}
+                                    {{bookscheckedout.bookid.author.lastname}}</p>
+                            </figcaption>
+                            <div class="form-group tm-d-flex">
+                                <button type="submit" name="book_name" value="{{bookscheckedout.bookid.name}}"
+                                        class="tm-btn tm-btn-success tm-btn-right" form="form2">
+                                    Return This Book
+                                </button>
+                            </div>
+                        </figure>
 
-            </article>
+                    </article>
 
-          </form>
+                </form>
+            </div>
+            {%endfor%}
         </div>
-        {%endfor%}
-      </div>
 
     </main>
 
     <footer class="tm-footer text-center">
-      <p>Copyright &copy; 2020 Simple House
+        <p>Copyright &copy; 2020 Simple House
 
-        | Design: <a rel="nofollow" href="https://templatemo.com">TemplateMo</a></p>
+            | Design: <a rel="nofollow" href="https://templatemo.com">TemplateMo</a></p>
     </footer>
-  </div>
-  <script src="static/js/jquery.min.js"></script>
-  <script src="static/js/parallax.min.js"></script>
-  <script>
+</div>
+<script src="static/js/jquery.min.js"></script>
+<script src="static/js/parallax.min.js"></script>
+<script>
     $(document).ready(function () {
       // Handle click on paging links
       $('.tm-paging-link').click(function (e) {
@@ -129,7 +132,11 @@ https://templatemo.com/tm-539-simple-house
         $(this).addClass("active");
       });
     });
-  </script>
+
+
+
+
+</script>
 </body>
 
 </html>

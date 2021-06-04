@@ -3,6 +3,7 @@ from django.shortcuts import redirect, render
 from django.utils import timezone
 from .models import Author, Book, BooksCheckedOut
 
+
 # Create your views here.
 
 
@@ -49,3 +50,7 @@ def returnbook(request):
         checkout.returned = True
         checkout.save(update_fields=['returned'])
         return redirect('StudentHomePage')
+
+
+def BrowseBooks(request):
+    return render(request, 'BrowseBooks.html')
