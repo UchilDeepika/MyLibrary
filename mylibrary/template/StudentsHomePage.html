@@ -76,7 +76,7 @@ https://templatemo.com/tm-539-simple-house
             </div>
             {%endfor%}
         </div>
-        <a href="BrowseBooks" ><p align="right" style="font-size:160%;"> More Books </p></a>
+        <a href="BrowseBooks"><p align="right" style="font-size:160%;"> More Books </p></a>
 
         <h2 class="col-12 text-center tm-section-title"> Books Checked out by '{{user.username}}' </h2>
 
@@ -89,8 +89,9 @@ https://templatemo.com/tm-539-simple-house
                         <figure>
                             <img src="{{bookscheckedout.bookid.img.url}}" alt="Image" class="img-fluid tm-gallery-img"/>
                             <figcaption>
-                                <h4 class="tm-gallery-title">{{bookscheckedout.bookid.name}}</h4> </br>
-                                by
+                                <h4 class="tm-gallery-title">{{bookscheckedout.bookid.name}}</h4>
+                            </figcaption>
+                            <figcaption>
                                 <p class="tm-gallery-price">{{bookscheckedout.bookid.author.fisrtname}}
                                     {{bookscheckedout.bookid.author.lastname}}</p>
                             </figcaption>
@@ -132,6 +133,7 @@ https://templatemo.com/tm-539-simple-house
         $(this).addClass("active");
       });
     });
+
 
 
 

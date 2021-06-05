@@ -1,7 +1,9 @@
-from django.contrib.auth.models import User
+from django.db.models import Q
+from django.http import JsonResponse
 from django.shortcuts import redirect, render
 from django.utils import timezone
-from .models import Author, Book, BooksCheckedOut
+
+from .models import Book, BooksCheckedOut, Author
 
 
 # Create your views here.
@@ -52,5 +54,44 @@ def returnbook(request):
         return redirect('StudentHomePage')
 
 
+def BooksSearch(request):
+    if 'term' in request.GET:
+        qs = Book.objects.filter(name__istartswith=request.GET.get('term'))
+        books = list()
+        for book in qs:
+            books.append(book.name)
+        return JsonResponse(books, safe=False)
+    return render(request, 'BrowseBooks.html')
+
+
+def AuthorSearch(request):
+    if 'term' in request.GET:
+        qs = Author.objects.filter(fisrtname__istartswith=request.GET.get('term'))
+        authors = list()
+        for author in qs:
+            authors.append(author.fisrtname + " " + author.lastname)
+        return JsonResponse(authors, safe=False)
+    return render(request, 'BrowseBooks.html')
+
+
 def BrowseBooks(request):
     return render(request, 'BrowseBooks.html')
+
+
+def SearchedBooks(request):
+    if request.method == "POST":
+        bookname = request.POST['books']
+        authorname = request.POST['authors']
+        if bookname == '':
+            bookname = "TEST"
+        if authorname == '':
+            pass
+        else:
+            firstName, lastName = authorname.split(' ', 1)
+        if authorname:
+            authorid = Author.objects.get(Q(fisrtname=firstName) & Q(lastname=lastName))
+        else:
+            authorid = 0
+            print(authorid)
+        books = Book.objects.filter(Q(name__icontains=bookname) | Q(author_id=authorid))
+        return render(request, 'BrowseBooks.html', {'books': books})
