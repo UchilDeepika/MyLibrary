@@ -2,6 +2,7 @@ from django.db.models import Q
 from django.http import JsonResponse
 from django.shortcuts import redirect, render
 from django.utils import timezone
+from django.contrib import messages
 
 from .models import Book, BooksCheckedOut, Author
 
@@ -26,15 +27,21 @@ def BookDetails(request):
 def CheckOut(request):
     if request.method == "POST":
         bookname = request.POST['book_name']
-        checkout = BooksCheckedOut()
-        checkout.bookid = Book.objects.get(name=bookname)
-        checkout.username = request.user.username
-        checkout.checkedoutdate = timezone.now()
-        checkout.save()
-        book = Book.objects.get(name=bookname)
-        book.available = False
-        book.save(update_fields=['available'])
-        return redirect('StudentHomePage')
+        number = BooksCheckedOut.objects.filter(username=request.user.username, returned=False).count()
+        print(number)
+        if number == 3:
+            messages.info(request, "You can only have 3 books at a time!")
+            return render(request, 'BookDetails.html')
+        else:
+            checkout = BooksCheckedOut()
+            checkout.bookid = Book.objects.get(name=bookname)
+            checkout.username = request.user.username
+            checkout.checkedoutdate = timezone.now()
+            checkout.save()
+            book = Book.objects.get(name=bookname)
+            book.available = False
+            book.save(update_fields=['available'])
+            return redirect('StudentHomePage')
 
 
 def index(request):
@@ -83,7 +90,7 @@ def SearchedBooks(request):
         bookname = request.POST['books']
         authorname = request.POST['authors']
         if bookname == '':
-            bookname = "TEST"
+            bookname = "NONE"
         if authorname == '':
             pass
         else:
@@ -92,6 +99,5 @@ def SearchedBooks(request):
             authorid = Author.objects.get(Q(fisrtname=firstName) & Q(lastname=lastName))
         else:
             authorid = 0
-            print(authorid)
         books = Book.objects.filter(Q(name__icontains=bookname) | Q(author_id=authorid))
         return render(request, 'BrowseBooks.html', {'books': books})
